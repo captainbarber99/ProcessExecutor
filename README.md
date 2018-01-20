@@ -1,2 +1,2 @@
 # ProcessExecutor
-Created own ps script which lists and kills any process without using ps command.
+Created which do not uses "ps" command to list processes running and kills any process by providing string.
