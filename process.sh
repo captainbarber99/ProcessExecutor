@@ -17,7 +17,7 @@ EOF
 
 read -ep "Select task to be performed [1/2]:  " ab
 
-procc=$(find /proc -mindepth 2 -maxdepth 3 -name exe -exec ls -lh {} \; 2>/dev/null |column|awk 'BEGIN {print "=======================================================\nUser                Date     Time    PID     Process\n=======================================================\n"             ;} match($9,/\/proc\/([[:digit:]]+)\/.*/,a){print $3,"  ",$6,$7," ",$8," ",a[1]," ",shellvar=$11}')
+procc=$(find /proc -mindepth 2 -maxdepth 3 -name exe -exec ls -lh {} \; 2>/dev/null |column|awk 'BEGIN {print "=======================================================\nUser                Date     Time    PID     Process\n=======================================================\n"             ;} match($9,/\/proc\/([[:digit:]]+)\/.*/,a){print $3,"  ",$6,$7," ",$8," ",a[1]," ",$11}')
 
 while true; do
 
