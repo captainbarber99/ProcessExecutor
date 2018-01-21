@@ -15,26 +15,26 @@ Select functionality:
 
 EOF
 
-read -ep "Select task to be performed [1/2]:  " ab
+read -ep "Select task to be performed [1/2]:  " task
 
 procc=$(find /proc -mindepth 2 -maxdepth 3 -name exe -exec ls -lh {} \; 2>/dev/null |column|awk 'BEGIN {print "=======================================================\nUser                Date     Time    PID     Process\n=======================================================\n"             ;} match($9,/\/proc\/([[:digit:]]+)\/.*/,a){print $3,"  ",$6,$7," ",$8," ",a[1]," ",$11}')
 
 while true; do
 
 
-case $ab in
+case $task in
             1)
                 echo -e "\e[1;32m$procc"
                 break;;
             2) 
-                read -ep "Enter name of the process:  " bc
-                kill=`echo "$procc" | grep -i $bc | awk '{print $5}'| xargs`
+                read -ep "Enter name of the process:  " pro
+                kill=`echo "$procc" | grep -i $pro | awk '{print $5}'| xargs`
                 if [ -z "$kill" ]; then
                     echo -e "\e[1;31mNo such process running";
                     
                 else
                 
-                    for i in $bc; do kill -9 $kill; done
+                    for i in $pro; do kill -9 $kill; done
                     echo -e "\e[1;36mProcesses Killed: " $kill
                     
                 fi
